@@ -3,4 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
+class Subject(models.Model):
+    description = models.TextField()
+    pub_date = models.DateTimeField('date published')
