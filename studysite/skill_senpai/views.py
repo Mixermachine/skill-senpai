@@ -8,3 +8,6 @@ from django.views.generic import TemplateView
 
 def index(request):
     return HttpResponse("Hello, world. You're at the skill_senpais index.")
+
+class IndexView(TemplateView):
+    template_name = "about.html"
