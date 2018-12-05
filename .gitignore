@@ -1,2 +1,12 @@
+# Compiled Sources #
+####################
+
+
 *.pyc
+
+
+# Live db #
+###########
+
+
 studysite/db.sqlite3
