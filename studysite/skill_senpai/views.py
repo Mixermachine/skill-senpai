@@ -10,7 +10,7 @@ import json
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the skill_senpais index.")
+    template_name = "index.html"
 
 
 def query_lectures(request):
@@ -24,9 +24,3 @@ def query_lectures(request):
 		return JsonResponse(get_lecture(received_json_data))
 
 	return HttpResponse(status=404)
-
-
-
-
-class IndexView(TemplateView):
-    template_name = "about.html"
