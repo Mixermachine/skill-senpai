@@ -2,8 +2,9 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
+from utils import get_lecture
 
 import json
 
@@ -15,15 +16,16 @@ def index(request):
 def query_lectures(request):
 
 	# json object to return
-	data
 
 	if request.method=='POST':
 
 		received_json_data=json.loads(request.POST['data'])
 		# fill json response here
 		data = {'foo': 'bar', 'hello': 'world'}
+		return JsonResponse(get_lecture(received_json_data))
 
-	return HttpResponse(json.dumps(data), content_type='application/json')
+	return HttpResponse(status=404)
+
 
 
 
