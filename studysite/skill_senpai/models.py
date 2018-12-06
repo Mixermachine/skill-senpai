@@ -19,6 +19,7 @@ class Language(models.Model):
 
 class Lecture(models.Model):
 
+	title = models.CharField(max_length=255, null=True)
 	description = models.TextField(null=True)
 	lecture_id = models.CharField(max_length=255, null=True)
    	preconditions = models.ManyToManyField("self", blank=True)
@@ -31,5 +32,5 @@ class Lecture(models.Model):
 	pub_date = models.DateTimeField('date published')
 	
 	def __unicode__(self):
-		return 'Lecture: ' + self.lecture_id
+		return 'Lecture: ' + self.title + " - " + self.lecture_id
 
