@@ -19,7 +19,8 @@ class Language(models.Model):
 
 class Lecture(models.Model):
 
-	title = models.CharField(max_length=255, null=True)
+	title = models.CharField(max_length=255, default='null')
+	short_description = models.CharField(max_length=255, null=True)
 	description = models.TextField(null=True)
 	lecture_id = models.CharField(max_length=255, null=True)
    	preconditions = models.ManyToManyField("self", blank=True)
