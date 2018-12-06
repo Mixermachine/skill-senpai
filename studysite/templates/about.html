@@ -1,10 +1,210 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="jquery.js"></script>
+
+		<style>
+/*chart nodes*/
+.orgchart {
+    display: inline-block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.orgchart, .orgchart ul {
+    padding: 0;
+    margin: 0;
+}
+
+/*align children horizontally using CSS flex*/
+.orgchart ul {
+    display: flex;
+}
+
+/*align nodecontent and children list vertically*/
+.orgchart li {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/*arrange the nodecontent centered above the children list*/
+.orgchart .nodecontent {
+    align-self: center;
+    position: relative;
+    margin: 20px 5px;
+}
+
+.orgchart .collapsed > ul {
+    display: none;
+}
+
+/*connections*/
+.orgchart li::before,
+.orgchart .nodecontent::after,
+.orgchart .nodecontent::before {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border: 0px solid #CCCCCC;
+}
+
+.orgchart li:not(:only-child)::before {
+    border-top-width: 2px;
+    width: 100%;
+    height: 20px;
+    top: 0px;
+}
+
+.orgchart li:first-child::before {
+    width: calc(50% + 1px);
+    right: 0;
+    border-left-width: 2px;
+    border-top-left-radius: 7px;
+}
+
+.orgchart li:last-child::before {
+    width: calc(50% + 1px);
+    border-right-width: 2px;
+    border-top-right-radius: 7px;
+}
+
+.orgchart .nodecontent::after,
+.orgchart .nodecontent::before {
+    border-left-width: 2px;
+    width: 2px;
+    height: 20px;
+    left: calc(50% - 1px);
+}
+
+.orgchart .nodecontent::before {
+    top: -20px;
+}
+.orgchart .nodecontent::after {
+    bottom: -20px;
+}
+
+.orgchart li:first-child:not(:only-child) > .nodecontent::before,
+.orgchart li:last-child:not(:only-child) > .nodecontent::before {
+    border-left-width: 0px;
+}
+
+.orgchart .leaf > .nodecontent::after,
+.orgchart .root > .nodecontent::before,
+.orgchart .collapsed > .nodecontent::after {
+    display: none;
+}
+		</style>
+
+		<script>
+			var skills = [];
+
+
+			function addSkill() {
+				skills.push(document.getElementById("skill").value);
+				document.getElementById("skill").value = "";
+				refresh();
+			}
+
+			function refresh() {
+				var skilllist = document.getElementById("skilllist");
+
+				while (skilllist.firstChild) {
+					skilllist.removeChild(skilllist.firstChild);
+				}
+
+				for(x in skills) {
+ 					var item = document.createElement("li");
+					item.className = "list-group-item";
+      				item.appendChild(document.createTextNode(skills[x]));
+					
+					var deleteLink = document.createElement("a");      
+					deleteLink.href = "javascript:del('" + skills[x] + "')";  
+					deleteLink.innerText = "X";  
+					item.appendChild(deleteLink)
+					 
+					skilllist.appendChild(item); 
+				}
+			}
+
+			function del(x) {
+				var index = skills.indexOf(x);
+				if (index > -1) {
+					skills.splice(index, 1);
+				}
+
+				refresh();
+			}
+
+			function generate() {
+				$.ajax({
+					type: "POST",
+					url: "/api/query",
+				// The key needs to match your method's input parameter (case-sensitive).
+				data: JSON.stringify(skills),
+					contentType: "application/json; charset=utf-8",
+					dataType: "json",
+					success: function(data) {
+						alert(data);
+					},
+					failure: function(errMsg) {
+						alert(errMsg);
+					}
+				});
+			}
+		</script>
+	</head>
 	<body>
+		<div class="jumbotron text-center">
+			<h1>Skill Senpai</h1>
+	    </div>
+				  
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h3>Skill</h3>
+					<!--<form action="/add_skill.php">-->
+						<div class="form-group">
+						  <label for="skill">Skill</label>
+						  <input type="skill" class="form-control" id="skill">
+						</div>
+						<button type="submit" class="btn btn-primary" onclick="addSkill()">Add</button>
+					<!--</form>-->
 
-		<h1>Example Heading</h1>
+					<ul id="skilllist" class="list-group">
+					</ul>
 
-		<p>Example Paragraph.</p>
+					<button type="submit" class="btn btn-primary" onclick="generate()">Generate</button>
+				</div>
+			</div>
 
+			<div class="row">
+				<div class="col">
+					<h3>Graph</h3>
+
+					<p id="json"></p>
+
+					<ul class="orgchart">
+							<li class="root">
+							  <div class="nodecontent">Company</div>
+							  <ul>
+								<li>
+								  <div class="nodecontent">Sales Department</div>
+								  <ul>
+									<li class="leaf">
+									  <div class="nodecontent">Sales Unit I</div>
+									</li>
+									<li class="leaf">
+									  <div class="nodecontent">Sales Unit II</div>
+									</li>
+								</ul>
+							</li>
+					</ul>
+						
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
