@@ -4,14 +4,14 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
+from django.template import Context, loader
 from utils import get_lecture
 
 import json
 
 
 def index(request):
-    template_name = "index.html"
-
+    return HttpResponse(loader.get_template('index.html').render())
 
 def query_lectures(request):
 #	from pudb import set_trace
