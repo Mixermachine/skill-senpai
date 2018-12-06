@@ -3,7 +3,10 @@ from __future__ import unicode_literals
 
 
 def get_lecture(skills):
-	# dic skills
+	# nicu desu
+
+
+
 	pass
 
 
