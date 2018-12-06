@@ -7,10 +7,15 @@ from django.db import models
 class Category(models.Model):
 	name = models.CharField(max_length=255)
 
+	def __unicode__(self):
+		return self.name
+
 
 class Language(models.Model):
 	name = models.CharField(max_length=255)
 
+	def __unicode__(self):
+		return self.name
 
 class Lecture(models.Model):
 
@@ -24,6 +29,7 @@ class Lecture(models.Model):
 	tutorial = models.BooleanField(default=False)
    	languages = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
 	pub_date = models.DateTimeField('date published')
-
-
+	
+	def __unicode__(self):
+		return 'Lecture: ' + self.lecture_id
 
