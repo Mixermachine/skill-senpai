@@ -12,12 +12,16 @@ from utils import get_lecture
 
 from models import Lecture
 
+from django.views.decorators.csrf import csrf_exempt
+
+
 import json
 
 
 def index(request):
     return HttpResponse(loader.get_template('index.html').render())
 
+@csrf_exempt
 def query_lectures(request):
 	# json object to return
 	if request.method == 'POST':
