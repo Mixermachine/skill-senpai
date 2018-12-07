@@ -38,3 +38,6 @@ class LectureConnector(models.Model):
 
 	pre = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, related_name='previous')
 	cur = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, related_name='current')
+
+	def __unicode__(self):
+		return 'Connector: Pre: ' + self.pre.lecture_id + ' -> Cur: ' + self.cur.lecture_id
