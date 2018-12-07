@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
@@ -31,6 +32,14 @@ class LectureDetailView(DetailView):
 
 	model = Lecture
 	template_name = 'lecture_detail.html'
+
+
+	# def get_object(self):
+
+	#	return get_object_or_404(Lecture, pk=request.session['lecture_id'])
+
+	def get_object(self):
+		return get_object_or_404(Lecture, pk=self.request.session[''])
 
 	def get_context_data(self, **kwargs):
 

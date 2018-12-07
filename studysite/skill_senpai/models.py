@@ -22,8 +22,7 @@ class Lecture(models.Model):
 	title = models.CharField(max_length=255, default='null')
 	short_description = models.CharField(max_length=255, null=True)
 	description = models.TextField(null=True)
-	lecture_id = models.CharField(max_length=255, null=True)
-   	preconditions = models.ManyToManyField("self", blank=True)
+	lecture_id = models.CharField(max_length=255, unique=True, null=True)
 	categorie = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 	credits = models.IntegerField(null=True)
 	time = models.TimeField(null=True)
@@ -35,3 +34,7 @@ class Lecture(models.Model):
 	def __unicode__(self):
 		return 'Lecture: ' + self.title + " - " + self.lecture_id
 
+class LectureConnector(models.Model):
+
+	pre = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, related_name='previous')
+	cur = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, related_name='current')
