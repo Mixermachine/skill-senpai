@@ -22,11 +22,11 @@ def get_preconditions_rec(list, id): # might send duplicate title, can be improv
 	database_item = Lecture.objects.get(lecture_id=id)
 	my_preconditions = database_item.preconditions.all()
 	if my_preconditions:
-		for precondition in database_item.preconditions:
+		for precondition in my_preconditions:
 			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title,
-					   'precondition': precondition}
-		list.append(lecture)
-		get_preconditions_rec(list, precondition)
+					   'precondition': precondition.lecture_id}
+			list.append(lecture)
+			get_preconditions_rec(list, precondition.lecture_id)
 	else:
 		list.append({'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': ""})
 	pass
