@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from skill_senpai.models import Lecture
+from skill_senpai.models import LectureConnector
 
 
 def get_lecture(skills):
@@ -20,13 +21,13 @@ def get_lecture(skills):
 
 def get_preconditions_rec(list, id): # might send duplicate title, can be improved
 	database_item = Lecture.objects.get(lecture_id=id)
-	my_preconditions = database_item.preconditions.all()
-	if my_preconditions:
-		for precondition in my_preconditions:
-			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': precondition.lecture_id}
+	item_connectors = LectureConnector.objects.filter(cur=database_item).all()
+	if item_connectors:
+		for connector in item_connectors:
+			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': connector.pre.lecture_id}
 			if not check_if_precondition_duplicate(list, lecture):
 				list.append(lecture)
-				get_preconditions_rec(list, precondition.lecture_id)
+				get_preconditions_rec(list, connector.pre.lecture_id)
 			else:
 				print "Warning found loop " + lecture['lecture_id'] + " <-> " + lecture['precondition']
 	else:
