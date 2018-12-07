@@ -142,6 +142,12 @@ var force, svg, link, node;
 				$('#lecturelist').empty();
 				links = [];
 
+				var element = document.getElementsByTagName("svg"), index;
+
+                for (index = element.length - 1; index >= 0; index--) {
+                    element[index].parentNode.removeChild(element[index]);
+                }
+
 				$('#svg').remove();
 
 				$.each(data["lectures"], function( index, value ) {
@@ -251,7 +257,7 @@ function tick() {
 					<h3>Skill</h3>
 					<!--<form action="/add_skill.php">-->
 						<div class="form-group">
-						  <label for="skill">Skill</label>
+						  <label for="skill">Skill (example: MA2005)</label>
 						  <input type="skill" class="form-control" id="skill">
 						</div>
 						<button type="submit" class="btn btn-primary" onclick="addSkill()">Add</button>
