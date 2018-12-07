@@ -30,7 +30,7 @@ def get_preconditions_rec(list, id): # might send duplicate title, can be improv
 	item_connectors = LectureConnector.objects.filter(cur=database_item).all()
 	if item_connectors:
 		for connector in item_connectors:
-			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': connector.pre.lecture_id}
+			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': connector.pre.lecture_id, 'importance': connector.importance}
 			if not check_if_precondition_duplicate(list, lecture):
 				list.append(lecture)
 				get_preconditions_rec(list, connector.pre.lecture_id)
