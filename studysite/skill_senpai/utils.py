@@ -20,7 +20,13 @@ def get_lecture(skills):
 
 
 def get_preconditions_rec(list, id): # might send duplicate title, can be improved
-	database_item = Lecture.objects.get(lecture_id=id)
+	try:
+		database_item = Lecture.objects.get(lecture_id=id)
+	except:
+		# dirty
+		list = []
+		list["error"] = id
+		return
 	item_connectors = LectureConnector.objects.filter(cur=database_item).all()
 	if item_connectors:
 		for connector in item_connectors:
