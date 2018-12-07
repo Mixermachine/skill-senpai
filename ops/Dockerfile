@@ -14,4 +14,6 @@ COPY ./studysite/ ./
 
 RUN ["chmod", "+x", "migrate_and_run.sh" ]
 
-CMD [ "./migrate_and_run.sh" ]
+ENTRYPOINT ["python", "manage.py"]
+
+CMD [ "runserver", "0.0.0.0:8000" ]
