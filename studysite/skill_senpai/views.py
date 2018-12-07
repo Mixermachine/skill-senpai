@@ -39,7 +39,8 @@ class LectureDetailView(DetailView):
 	#	return get_object_or_404(Lecture, pk=request.session['lecture_id'])
 
 	def get_object(self):
-		return get_object_or_404(Lecture, pk=self.request.session[''])
+
+		return get_object_or_404(Lecture, lecture_id=self.kwargs['lecture_id'])
 
 	def get_context_data(self, **kwargs):
 
