@@ -14,12 +14,10 @@ def index(request):
     return HttpResponse(loader.get_template('index.html').render())
 
 def query_lectures(request):
-#	from pudb import set_trace
-#	set_trace()
 	# json object to return
-	if request.method=='POST':
+	if request.method == 'POST':
 
-		received_json_data=json.loads(request.body)
+		received_json_data = json.loads(request.body)
 
 		return JsonResponse(get_lecture(received_json_data))
 
