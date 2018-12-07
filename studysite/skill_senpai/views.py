@@ -32,6 +32,12 @@ class LectureDetailView(DetailView):
 	model = Lecture
 	template_name = 'lecture_detail.html'
 
+
+	# def get_object(self):
+
+	#	return get_object_or_404(Lecture, pk=request.session['lecture_id'])
+
+
 	def get_context_data(self, **kwargs):
 
 		context = super(LectureDetailView, self).get_context_data(**kwargs)
