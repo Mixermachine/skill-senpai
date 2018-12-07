@@ -25,7 +25,7 @@ def get_preconditions_rec(list, id): # might send duplicate title, can be improv
 	except:
 		# dirty
 		list = []
-		list["error"] = id
+		list.append({'error': id})
 		return
 	item_connectors = LectureConnector.objects.filter(cur=database_item).all()
 	if item_connectors:
