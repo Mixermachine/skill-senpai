@@ -142,8 +142,10 @@ var force, svg, link, node;
 				$('#lecturelist').empty();
 				links = [];
 
+				$('#svg').remove();
+
 				$.each(data["lectures"], function( index, value ) {
-					$('#lecturelist').append($("<li></li>").addClass("nodecontent").append("<div class=\"nodecontent\">" + value["lecture_id"] + ": <a href='lecture/'" + value["lecture_id"] + ">" + value["title"] + "</a><br />" + [""] + "</div>"));
+					$('#lecturelist').append($("<li></li>").addClass("nodecontent").append("<div class=\"nodecontent\">" + value["lecture_id"] + ": <a href='lecture/" + value["lecture_id"] + "'>" + value["title"] + "</a><br />" + [""] + "</div>"));
 				});
 
 				$.each(data["lectures"], function( index, value ) {
@@ -168,7 +170,7 @@ var force, svg, link, node;
 								.charge(-300)
 								.on("tick", tick)
 								.start();
-							
+
 							svg = d3.select("body").append("svg")
 								.attr("width", width)
 								.attr("height", height);
