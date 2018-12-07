@@ -28,7 +28,7 @@ class Lecture(models.Model):
 	time = models.TimeField(null=True)
 	nevents = models.IntegerField(null=True)
 	tutorial = models.BooleanField(default=False)
-   	languages = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
+	languages = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
 	pub_date = models.DateTimeField('date published')
 	
 	def __unicode__(self):
@@ -38,6 +38,7 @@ class LectureConnector(models.Model):
 
 	pre = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, related_name='previous')
 	cur = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, related_name='current')
+	importants = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return 'Connector: Pre: ' + self.pre.lecture_id + ' -> Cur: ' + self.cur.lecture_id
