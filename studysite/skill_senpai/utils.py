@@ -25,8 +25,18 @@ def get_preconditions_rec(list, id): # might send duplicate title, can be improv
 		for precondition in my_preconditions:
 			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title,
 					   'precondition': precondition.lecture_id}
-			list.append(lecture)
-			get_preconditions_rec(list, precondition.lecture_id)
+			if not check_if_precondition_duplicate(list, lecture):
+				list.append(lecture)
+				get_preconditions_rec(list, precondition.lecture_id)
+			else:
+				print "Warning found loop " + lecture.lecture_id + " <-> " + lecture.precondition
 	else:
 		list.append({'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': ""})
 	pass
+
+
+def check_if_precondition_duplicate(list, lecture):
+	for item in list:
+		if item.lecture_id == lecture.lecture_id & item.precondition == lecture.precondition == lecture.precondition:
+			return True
+	return False
