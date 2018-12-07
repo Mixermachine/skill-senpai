@@ -149,7 +149,7 @@ var force, svg, link, node;
 				});
 
 				$.each(data["lectures"], function( index, value ) {
-					links.push({source: value["lecture_id"], target: value["precondition"], type: "licensing"})
+					links.push({target: value["lecture_id"], source: value["precondition"], type: "licensing"})
 				});	
 
 				
