@@ -9,11 +9,22 @@ def get_lecture(skills):
 	return_list = []
 
 	# nicu desu
-	for item in skills:
-		return_list.append(Lecture.objects.get(lecture_id=item))
+	for id in skills:
+		get_preconditions_rec(return_list, id)
 
-	return return_list
+	ret_dict = {}
+	ret_dict['lectures'] = return_list
+	return ret_dict
 
 
-def get_preconditions():
+def get_preconditions_rec(list, id): # might send duplicate title, can be improved
+	database_item = Lecture.objects.get(lecture_id=id)
+	if database_item.preconditions:
+		for precondition in database_item.preconditions:
+			lecture = {'lecture_id': database_item.lecture_id, 'title': database_item.title,
+					   'precondition': precondition}
+		list.append(lecture)
+		get_preconditions_rec(list, precondition)
+	else:
+		list.append({'lecture_id': database_item.lecture_id, 'title': database_item.title, 'precondition': ""})
 	pass
