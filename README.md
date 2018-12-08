@@ -1,4 +1,8 @@
 # skill-senpai
+This project was created on a hackathon on the 8.12.2018.
+
+We want to make it easier for students to fill their time table with lectures to topics they really like.
+
 ## Description
 
 
