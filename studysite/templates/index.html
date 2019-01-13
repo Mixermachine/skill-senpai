@@ -1,128 +1,19 @@
+{% extends 'base/base.html' %}
+
 {% load staticfiles %}
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Learn &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="skill senpai tum online" />
-	<meta name="author" content="freehtml5.co" />
 
-	<!-- 
-	//////////////////////////////////////////////////////
+{% block content %}
 
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/animate.css" %}">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/icomoon.css" %}">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/bootstrap.css" %}">
-
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/magnific-popup.css" %}">
-
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/owl.carousel.min.css" %}">
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/owl.theme.default.min.css" %}">
-
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="{% static "skill_senpai/template/css/style.css" %}">
-
-	<!-- Modernizr JS -->
-	<script src="{% static "skill_senpai/template/js/modernizr-2.6.2.min.js" %}"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-        <script src="{% static "skill_senpai/template/js/respond.min.js" %}"></script>
-        <![endif]-->
-
-	</head>
-	<body>
-		
-	<div class="fh5co-loader"></div>
-	
-	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-		<div class="top">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 text-right">
-						<p class="num">Call: +01 123 456 7890</p>
-						<ul class="fh5co-social">
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble"></i></a></li>
-							<li><a href="#"><i class="icon-github"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="top-menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-1">
-						<div id="fh5co-logo"><a href="index.html">Learn<span>.</span></a></div>
-					</div>
-					<div class="col-xs-11 text-right menu-1">
-						<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="courses.html">Courses</a></li>
-							<li><a href="pricing.html">Pricing</a></li>
-							<li class="has-dropdown">
-								<a href="blog.html">Blog</a>
-								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
-								</ul>
-							</li>
-							<li><a href="contact.html">Contact</a></li>
-							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
-							<li class="btn-cta"><a href="#"><span>Create a Course</span></a></li>
-						</ul>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</nav>
-
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url("{% static "skill_senpai/template/images/img_bg_1.jpg" %}");" data-stellar-background-ratio="0.5">
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({% static "skill_senpai/template/images/bright-energy-idea-247753.jpg" %});" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>The Art of Teaching is the Art of Assisting Discovery</h1>
-							<h2>Free html5 templates Made by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>
-							<p><a class="btn btn-primary btn-lg btn-learn" href="#">Take A Course</a> <a class="btn btn-primary btn-lg popup-vimeo btn-video" href="https://vimeo.com/channels/staffpicks/93951774"><i class="icon-play"></i> Watch Video</a></p>
+							<h1>Find TUM lectures that suite you best</h1>
+							<h2>We are on <a href="https://github.com/Mixermachine/skill-senpai" target="_blank">github.com</a></h2>
+							<p><a class="btn btn-primary btn-lg btn-learn" href="/pre-lectures/">Find pre-lectures</a> <a class="btn btn-primary btn-lg btn-learn" href="/curriculum/">Plan your curriculum</a></p>
 						</div>
 					</div>
 				</div>
@@ -134,20 +25,20 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="40356" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Students</span>
+					<span class="fh5co-counter js-counter" data-from="0" data-to="123" data-speed="5000" data-refresh-interval="50"></span>
+					<span class="fh5co-counter-label">Unique Users</span>
 				</div>
 				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="30290" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Courses</span>
+					<span class="fh5co-counter js-counter" data-from="0" data-to="1234" data-speed="5000" data-refresh-interval="50"></span>
+					<span class="fh5co-counter-label">Page accesses</span>
 				</div>
 				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="2039" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Instructor</span>
+					<span class="fh5co-counter js-counter" data-from="0" data-to="12345" data-speed="5000" data-refresh-interval="50"></span>
+					<span class="fh5co-counter-label">Api calls</span>
 				</div>
 				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="997585" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">Earnings</span>
+					<span class="fh5co-counter js-counter" data-from="0" data-to="123456" data-speed="5000" data-refresh-interval="50"></span>
+					<span class="fh5co-counter-label">Lectures</span>
 				</div>
 			</div>
 		</div>
@@ -157,8 +48,8 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Take A Course</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					<h2>We are working on it</h2>
+					<p>A work in progress by TUM students, created at a Hackathon in Dec 2018</p>
 				</div>
 			</div>
 		</div>		
@@ -166,18 +57,18 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-push-5 animate-box">
-						<img class="img-responsive" src="{% static "skill_senpai/template/images/work_1.png" %}" alt="work">
+						<img class="img-responsive" src="{% static "skill_senpai/template/images/cole-keister-291568-unsplash_resized.jpg" %}" alt="work">
 					</div>
 					<div class="col-md-4 col-md-pull-8 animate-box">
 						<div class="mt">
-							<h3>We Want You To Learn English</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<h3>We Want You To find the best Courses that fit you</h3>
+							<p>The TUMonline lecture presentation can be hard to grasp. We want to make it easier for you to find courses that match your interests and curriculum</p>
 							<ul class="list-nav">
-								<li><i class="icon-check2"></i>Far far away, behind the word</li>
-								<li><i class="icon-check2"></i>There live the blind texts</li>
-								<li><i class="icon-check2"></i>Separated they live in bookmarksgrove</li>
+								<li><i class="icon-check2"></i>Easy</li>
+								<li><i class="icon-check2"></i>Interactive</li>
+								<li><i class="icon-check2"></i>Smart</li>
 							</ul>
-							<p><a class="btn btn-primary btn-lg popup-vimeo btn-video" href="https://vimeo.com/channels/staffpicks/93951774"><i class="icon-play"></i> Watch Video</a></p>
+							<!-- <p><a class="btn btn-primary btn-lg popup-vimeo btn-video" href="https://vimeo.com/channels/staffpicks/93951774"><i class="icon-play"></i> Watch Video</a></p> -->
 						</div>
 					</div>
 				</div>
@@ -188,21 +79,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-pull-1 animate-box">
-						<img class="img-responsive" src="{% static "skill_senpai/template/images/work_1.png" %}" alt="work">
+						<img class="img-responsive" src="{% static "skill_senpai/template/images/seminar-594125_1920.jpg" %}" alt="work">
 					</div>
 					<div class="col-md-4 animate-box">
 						<div class="mt">
 							<div>
-								<h4><i class="icon-user"></i>Real Project For Real Solutions</h4>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+								<h4><i class="icon-user"></i>Created by TUM students</h4>
+								<p>We created this project at a Hackathon and want to keep this project alive. Our timetable is pretty packed so new feature might take some time :).</p>
 							</div>
 							<div>
-								<h4><i class="icon-video2"></i>Real Project For Real Solutions</h4>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+								<h4><i class="icon-server"></i>Up to date tools</h4>
+								<p>We use Django, Python, MariaDB and Elasticsearch to make this project possible.</p>
 							</div>
 							<div>
-								<h4><i class="icon-shield"></i>Real Project For Real Solutions</h4>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
+								<h4><i class="icon-heart"></i>Get involved</h4>
+								<p>We organize our work on Github and try to split new features in small tasks (to make it easier for starters).
+                                    Have a look at <a href="https://github.com/Mixermachine/skill-senpai/projects">Github projects page</a> and submit a pull request for your solution.
+                                    We will get in touch with you :).</p>
 							</div>
 						</div>
 					</div>
@@ -210,80 +103,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<div id="fh5co-project">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Showcase of A Finish Projects</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid proj-bottom">
-			<div class="row">
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src="{% static "skill_senpai/template/images/project-1.jpg" %}" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-						<h3>Web Master</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src="{% static "skill_senpai/template/images/project-2.jpg" %}" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-						<h3>Virtual Assistant</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src="{% static "skill_senpai/template/images/project-3.jpg" %}" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-						<h3>Read Bible</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src="{% static "skill_senpai/template/images/project-9.jpg" %}" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-						<h3>Programming</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src="{% static "skill_senpai/template/images/project-5.jpg" %}" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-						<h3>Technician</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src="{% static "skill_senpai/template/images/project-6.jpg" %}" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-						<h3>Photography</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="features">
-					<div class="col-md-4 animate-box">
-						<h4>We have coolest features of this course</h4>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  </p>
-					</div>
-					<div class="col-md-4 animate-box">
-						<h4>Great teachers that we have</h4>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  </p>
-					</div>
-					<div class="col-md-4 animate-box">
-						<h4>Steps by steps turorial session</h4>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  </p>
-					</div>
-				</div>
-				<div class="col-md-12 text-center animate-box">
-					<p><a class="btn btn-primary btn-lg btn-learn" href="#">Create A Free Course</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<div id="fh5co-steps">
+	<!--<div id="fh5co-steps">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -301,21 +122,21 @@
 					<div class="bs-wizard-info text-center"><p>Create A Free Course</p></div>
 				</div>
 
-				<div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+				<div class="col-xs-3 bs-wizard-step active">
 					<div class="text-center bs-wizard-stepnum"><h4>Step 2</h4></div>
 					<div class="progress"><div class="progress-bar"></div></div>
 					<a href="#" class="bs-wizard-dot"></a>
 					<div class="bs-wizard-info text-center"><p>Upload Content</p></div>
 				</div>
 
-				<div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+				<div class="col-xs-3 bs-wizard-step disabled">
 					<div class="text-center bs-wizard-stepnum"><h4>Step 3</h4></div>
 					<div class="progress"><div class="progress-bar"></div></div>
 					<a href="#" class="bs-wizard-dot"></a>
 					<div class="bs-wizard-info text-center"><p>Make Your Course Beautiful</p></div>
 				</div>
 
-				<div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+				<div class="col-xs-3 bs-wizard-step disabled">
 					<div class="text-center bs-wizard-stepnum"><h4>Step 4</h4></div>
 					<div class="progress"><div class="progress-bar"></div></div>
 					<a href="#" class="bs-wizard-dot"></a>
@@ -324,7 +145,7 @@
 			</div>
 
 		</div>
-	</div>
+	</div> -->
 
 	<div id="fh5co-testimonial" class="fh5co-bg-section">
 		<div class="container">
@@ -340,33 +161,33 @@
 							<div class="item">
 								<div class="testimony-slide active text-center">
 									<figure>
-										<img src="{% static "skill_senpai/template/images/person_1.jpg" %}"alt="user">
+										<img src="{% static "skill_senpai/template/images/adult-beard-boy-220453_resize.jpg" %}"alt="user">
 									</figure>
-									<span>Jean Doe, via <a href="#" class="twitter">Twitter</a></span>
+									<span>Jean Stockimage Doe, via <a href="#" class="twitter">Twitter</a></span>
 									<blockquote>
-										<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+										<p>&ldquo;Instruction unclear, hand stuck in toaster&rdquo;</p>
 									</blockquote>
 								</div>
 							</div>
 							<div class="item">
 								<div class="testimony-slide active text-center">
 									<figure>
-										<img src="{% static "skill_senpai/template/images/person_2.jpg" %}" alt="user">
+										<img src="{% static "skill_senpai/template/images/blur-casual-coffee-712513_resize.jpg" %}" alt="user">
 									</figure>
-									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
+									<span>Johna Stockimage Doeis, via <a href="#" class="twitter">Twitter</a></span>
 									<blockquote>
-										<p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+										<p>&ldquo;Well, it's something&rdquo;</p>
 									</blockquote>
 								</div>
 							</div>
 							<div class="item">
 								<div class="testimony-slide active text-center">
 									<figure>
-										<img src="{% static "skill_senpai/template/images/person_3.jpg" %}" alt="user">
+										<img src="{% static "skill_senpai/template/images/beard-blur-casual-462680_resize.jpg" %}" alt="user">
 									</figure>
-									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
+									<span>Martin Stockimage Müller, via <a href="#" class="twitter">Twitter</a></span>
 									<blockquote>
-										<p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+										<p>&ldquo;Ok&rdquo;</p>
 									</blockquote>
 								</div>
 							</div>
@@ -381,24 +202,24 @@
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Recent Post</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					<h2>Newest features</h2>
+					<p>The newest coolest stuff.</p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-4">
 					<div class="fh5co-blog animate-box">
-						<a href="#"><img class="img-responsive" src="{% static "skill_senpai/template/images/project-4.jpg" %}" alt=""></a>
+						<a href="#"><img class="img-responsive" src="{% static "skill_senpai/template/images/rocket-rocket-launch-smoke-73871_resize.jpg" %}" alt=""></a>
 						<div class="blog-text">
-							<h3><a href=""#>45 Minimal Workspace Rooms for Web Savvys</a></h3>
-							<span class="posted_on">Nov. 15th</span>
-							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<a href="#" class="btn btn-primary">Read More</a>
+							<h3><a href=""#>We are live!</a></h3>
+							<span class="posted_on">Jan. 13, 2019</span>
+							<!--<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>-->
+							<p>The new landing page is up and running.</p>.</p>
+							<!--<a href="#" class="btn btn-primary">Read More</a>-->
 						</div> 
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4">
+                <!--<div class="col-lg-4 col-md-4">
 					<div class="fh5co-blog animate-box">
 						<a href="#"><img class="img-responsive" src="{% static "skill_senpai/template/images/project-2.jpg" %}" alt=""></a>
 						<div class="blog-text">
@@ -409,8 +230,8 @@
 							<a href="#" class="btn btn-primary">Read More</a>
 						</div> 
 					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
+				</div> -->
+				<!--<div class="col-lg-4 col-md-4">
 					<div class="fh5co-blog animate-box">
 						<a href="#"><img class="img-responsive" src="{% static "skill_senpai/template/images/project-3.jpg" %}" alt=""></a>
 						<div class="blog-text">
@@ -421,7 +242,7 @@
 							<a href="#" class="btn btn-primary">Read More</a>
 						</div> 
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -433,113 +254,16 @@
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Lets Get Started</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+					<p>Find the best TUM courses</p>
 				</div>
 			</div>
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center">
-					<p><a href="#" class="btn btn-default btn-lg">Create A Free Course</a></p>
+					<p><a href="#" class="btn btn-default btn-lg">Plan your Curriculum</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<footer id="fh5co-footer" role="contentinfo">
-		<div class="container">
-			<div class="row row-pb-md">
-				<div class="col-md-3 fh5co-widget">
-					<h4>About Learning</h4>
-					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-				</div>
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<h4>Learning</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Course</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contact</a></li>
-						<li><a href="#">Terms</a></li>
-						<li><a href="#">Meetups</a></li>
-					</ul>
-				</div>
 
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<h4>Learn &amp; Grow</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Privacy</a></li>
-						<li><a href="#">Testimonials</a></li>
-						<li><a href="#">Handbook</a></li>
-						<li><a href="#">Held Desk</a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<h4>Engage us</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Marketing</a></li>
-						<li><a href="#">Visual Assistant</a></li>
-						<li><a href="#">System Analysis</a></li>
-						<li><a href="#">Advertise</a></li>
-					</ul>
-				</div>
-
-				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
-					<h4>Legal</h4>
-					<ul class="fh5co-footer-links">
-						<li><a href="#">Find Designers</a></li>
-						<li><a href="#">Find Developers</a></li>
-						<li><a href="#">Teams</a></li>
-						<li><a href="#">Advertise</a></li>
-						<li><a href="#">API</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="row copyright">
-				<div class="col-md-12 text-center">
-					<p>
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
-						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
-					</p>
-					<p>
-						<ul class="fh5co-social-icons">
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-facebook"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble"></i></a></li>
-						</ul>
-					</p>
-				</div>
-			</div>
-
-		</div>
-	</footer>
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	
-	<!-- jQuery -->
-	<script src="{% static "skill_senpai/template/js/jquery-2.1.4.min.js" %}"></script>
-	<!-- jQuery Easing -->
-	<script src="{% static "skill_senpai/template/js/jquery.easing.1.3.js" %}"></script>
-	<!-- Bootstrap -->
-	<script src="{% static "skill_senpai/template/js/bootstrap.min.js" %}"></script>
-	<!-- Waypoints -->
-	<script src="{% static "skill_senpai/template/js/jquery.waypoints.min.js" %}"></script>
-	<!-- Stellar Parallax -->
-	<script src="{% static "skill_senpai/template/js/jquery.stellar.min.js" %}"></script>
-	<!-- Carousel -->
-	<script src="{% static "skill_senpai/template/js/owl.carousel.min.js" %}"></script>
-	<!-- countTo -->
-	<script src="{% static "skill_senpai/template/js/jquery.countTo.js" %}"></script>
-	<!-- Magnific Popup -->
-	<script src="{% static "skill_senpai/template/js/jquery.magnific-popup.min.js" %}"></script>
-	<script src="{% static "skill_senpai/template/js/magnific-popup-options.js" %}"></script>
-	<!-- Main -->
-	<script src="{% static "skill_senpai/template/js/main.js" %}"></script>
-
-	</body>
-</html>
-
+{% endblock %}
