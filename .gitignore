@@ -11,3 +11,4 @@
 
 studysite/db.sqlite3
 studysite/.idea/*
+studysite/studysite/settings_secret.py
