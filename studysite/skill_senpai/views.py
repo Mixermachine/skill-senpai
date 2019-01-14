@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, JsonResponse
-from django.views.generic import TemplateView
-from django.views.generic.detail import DetailView
-from django.template import Context, loader
-from django.utils import timezone
-from utils import get_lecture
-
-from models import Lecture
-
-from django.views.decorators.csrf import csrf_exempt
-
-
 import json
 
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404
+from django.template import loader
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.detail import DetailView
 
-def index(request):
-    return HttpResponse(loader.get_template('index.html').render())
+from models import Lecture
+from utils import get_lecture
+
+
+def simpleProcessor(request):
+	if request.path == '/':
+		return HttpResponse(loader.get_template('index.html').render())
+	else:
+		return HttpResponse(loader.get_template(request.path.replace('/', '') + '.html').render())
+
 
 @csrf_exempt
 def query_lectures(request):
@@ -32,15 +32,10 @@ def query_lectures(request):
 
 	return HttpResponse(status=404)
 
-class LectureDetailView(DetailView):
 
+class LectureDetailView(DetailView):
 	model = Lecture
 	template_name = 'lecture_detail.html'
-
-
-	# def get_object(self):
-
-	#	return get_object_or_404(Lecture, pk=request.session['lecture_id'])
 
 	def get_object(self):
 		return get_object_or_404(Lecture, lecture_id=self.kwargs['lecture_id'])
@@ -49,6 +44,4 @@ class LectureDetailView(DetailView):
 
 		context = super(LectureDetailView, self).get_context_data(**kwargs)
 		context['now'] = timezone.now()
-
-
 		return context

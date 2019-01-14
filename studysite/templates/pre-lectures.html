@@ -1,0 +1,267 @@
+{% extends 'base/base.html' %}
+
+{% load staticfiles %}
+
+
+{% block content %}
+
+    <link rel="stylesheet" src="{% static 'skill_senpai/css/bootstrap.min.css' %}">
+    <!--<link rel="stylesheet" src="{% static 'skill_senpai/css/orgchart.css' %}">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="{% static 'skill_senpai/scripts/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'skill_senpai/scripts/bootstrap.min.js' %}"></script>
+    <script src="{% static 'skill_senpai/scripts/d3.v3.min.js' %}"></script>
+
+    <script>
+        var links = [];
+        var skills = [];
+
+        function addSkill() {
+            skills.push(document.getElementById("skill").value);
+            //skills.push($('#skill').val());
+            $('#skill').val("");
+            refresh();
+        }
+
+        function refresh() {
+            var skilllist = document.getElementById("skilllist");
+            $('#skilllist').empty();
+            $.each(skills, function (index, value) {
+                /*var item = document.createElement("li");
+                item.className = "list-group-item";
+                  item.appendChild(document.createTextNode(value));*/
+                var deleteLink = document.createElement("a");
+                deleteLink.href = "javascript:del('" + value + "')";
+                deleteLink.innerText = "X";
+                $('#skilllist').append($("<li></li>").addClass("list-group-item").append("<div>" + value + "</div>")
+                    .append(deleteLink));
+            });
+        }
+
+        function del(x) {
+            var index = skills.indexOf(x);
+            if (index > -1) {
+                skills.splice(index, 1);
+            }
+            refresh();
+        }
+
+        // using jQuery
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        var csrftoken = getCookie('csrftoken');
+
+        function generate() {
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/api/query_lectures/",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(skills),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    //var lecturelist = JSON.parse(data);
+                    doGraph(data);
+
+
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
+        var nodes = {};
+        var width = 960, height = 500;
+        var force, svg, link, node;
+
+        function doGraph(data) {
+            $('#lecturelist').empty();
+            links = [];
+            var element = document.getElementsByTagName("svg"), index;
+            for (index = element.length - 1; index >= 0; index--) {
+                element[index].parentNode.removeChild(element[index]);
+            }
+            $('#svg').remove();
+            $.each(data["lectures"], function (index, value) {
+                $('#lecturelist').append($("<li></li>").addClass("nodecontent").append("<div class=\"nodecontent\">" +
+                    value["lecture_id"] + ": <a href='lecture/" + value["lecture_id"] + "'>" + value["title"] +
+                    "</a><br />" + [""] + "</div>"));
+            });
+            $.each(data["lectures"], function (index, value) {
+                links.push({target: value["lecture_id"], source: value["precondition"], type: "licensing"})
+            });
+
+
+            // Compute the distinct nodes from the links.
+            links.forEach(function (link) {
+                link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+                link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+            });
+
+
+            force = d3.layout.force()
+                .nodes(d3.values(nodes))
+                .links(links)
+                .size([width, height])
+                .linkDistance(60)
+                .charge(-300)
+                .on("tick", tick)
+                .start();
+            svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            svg.append("svg:defs").selectAll("marker")
+                .data(["end"])      // Different link/path types can be defined here
+                .enter().append("svg:marker")    // This section adds in the arrows
+                .attr("id", String)
+                .attr("viewBox", "0 -5 10 10")
+                .attr("refX", 15)
+                .attr("refY", -1.5)
+                .attr("markerWidth", 6)
+                .attr("markerHeight", 6)
+                .attr("orient", "auto")
+                .append("svg:path")
+                .attr("d", "M0,-5L10,0L0,5");
+            link = svg.selectAll(".link")
+                .data(force.links())
+                .enter().append("line")
+                .attr("class", "link")
+                .attr("marker-end", "url(#end)");
+
+            node = svg.selectAll(".node")
+                .data(force.nodes())
+                .enter().append("g")
+                .attr("class", "node")
+                .on("mouseover", mouseover)
+                .on("mouseout", mouseout)
+                .call(force.drag);
+
+            node.append("circle")
+                .attr("r", 8);
+
+            node.append("text")
+                .attr("x", 12)
+                .attr("dy", ".35em")
+                .text(function (d) {
+                    return d.name;
+                });
+
+        }
+
+        function tick() {
+            link
+                .attr("x1", function (d) {
+                    return d.source.x;
+                })
+                .attr("y1", function (d) {
+                    return d.source.y;
+                })
+                .attr("x2", function (d) {
+                    return d.target.x;
+                })
+                .attr("y2", function (d) {
+                    return d.target.y;
+                });
+
+            node
+                .attr("transform", function (d) {
+                    return "translate(" + d.x + "," + d.y + ")";
+                });
+        }
+
+        function mouseover() {
+            d3.select(this).select("circle").transition()
+                .duration(750)
+                .attr("r", 16);
+        }
+
+        function mouseout() {
+            d3.select(this).select("circle").transition()
+                .duration(750)
+                .attr("r", 8);
+        }
+
+
+    </script>
+
+    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner"
+            style="background-image:url(../static/skill_senpai/template/images/img_bg_2.jpg);"
+            data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="display-t">
+                        <div class="display-tc animate-box" data-animate-effect="fadeIn">
+                            <h1>Find the pre-lectures</h1>
+                            <h2>Enter the ID of a lecture you want to take and we display the lectures that you need to
+                                take beforehand</h2>
+                            <h2>Alpha version</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="fh5co-counter" class="fh5co-counters">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Skill</h3>
+                    <div class="form-group">
+                        <label for="skill">Skill (example: MA2005)</label>
+                        <input type="skill" class="form-control" id="skill">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="addSkill()">Add</button>
+                    <!--</form>-->
+
+                    <ul id="skilllist" class="list-group">
+                    </ul>
+
+                    <button type="submit" class="btn btn-primary" onclick="generate()">Generate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="fh5co-counter" class="fh5co-counters">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h3>Graph</h3>
+                    <ul id="lecturelist">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
