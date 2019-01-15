@@ -5,7 +5,7 @@ This project was created on a hackathon on the 8.12.2018.
 ## Description
 We want to make it easier for students to fill their time table with lectures to topics they really like.
 Our project is in the development phase and thus only offers limited functionality.
-Have a look: senpai.9d3.de
+Have a look: https://senpai.9d3.de
 
 ## Runserver
 
