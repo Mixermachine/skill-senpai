@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Elasticsearch
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'elasticsearch:9200'
+    },
+}
 
 # Application definition
 

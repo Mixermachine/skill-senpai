@@ -1,5 +1,9 @@
 # This file contains sensitive data.
 # The DATABASE and SECRET_KEY in production are different.
+import os
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ss4jgn&zv9(c@h81^9rie7*#s6=o@lr2z#0x*ycg@i=&1_qc1&'

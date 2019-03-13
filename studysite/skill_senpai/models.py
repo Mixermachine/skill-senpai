@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from .search import LectureIndex
 
 from django.db import models
 
@@ -33,6 +34,16 @@ class Lecture(models.Model):
 	
 	def __unicode__(self):
 		return 'Lecture: ' + self.title + " - " + self.lecture_id
+
+	def indexing(self):
+		obj = LectureIndex(
+			meta={'id': self.id},
+			title=self.title,
+			short_description=self.short_description,
+			description=self.description
+		)
+		obj.save(index='lecture-index')
+		return obj.to_dict(include_meta=True)
 
 class LectureConnector(models.Model):
 
