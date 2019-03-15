@@ -10,6 +10,9 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.detail import DetailView
 
+from hitcount.views import HitCountDetailView, HitCountMixin
+from hitcount.models import Hit, HitCount
+
 from models import Lecture
 from utils import get_lecture
 
@@ -33,8 +36,9 @@ def query_lectures(request):
 	return HttpResponse(status=404)
 
 
-class LectureDetailView(DetailView):
+class LectureDetailView(HitCountDetailView):
 	model = Lecture
+	count_hit = True
 	template_name = 'lecture_detail.html'
 
 	def get_object(self):

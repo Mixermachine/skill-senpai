@@ -2,3 +2,5 @@
 <p>{{ object.title }}</p>
 <p>Short Description: {{ object.short_description }}</p>
 <p>Description: {{ object.description }}</p>
+{% load hitcount_tags %}
+<p>load hitcount_tags: {% get_hit_count for object %}</p>

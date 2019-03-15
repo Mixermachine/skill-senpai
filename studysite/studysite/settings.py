@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Hitcount Settings
+HITCOUNT_KEEP_HIT_ACTIVE = { 'days': 0 }
+# while 0 means unlimited
+HITCOUNT_HITS_PER_IP_LIMIT = 0
+HITCOUNT_KEEP_HIT_IN_DATABASE = { 'days': 30 }
 
 # Application definition
 
@@ -39,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'hitcount',
 ]
 
 MIDDLEWARE = [

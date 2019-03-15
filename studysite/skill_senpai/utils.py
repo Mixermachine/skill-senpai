@@ -46,3 +46,6 @@ def check_if_precondition_duplicate(list, lecture):
 		if item['lecture_id'] == lecture['lecture_id'] and item['precondition'] == lecture['precondition']:
 			return True
 	return False
+
+def get_number_of_lectures():
+	return Lecture.objects.all().count()
