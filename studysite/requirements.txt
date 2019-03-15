@@ -1,1 +1,2 @@
+django-tracking==0.4.1
 django-hitcount==1.3.0
